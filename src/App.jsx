@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   // Filtriamo i task in base allo stato
-
   const otherTasks = tasks.filter(
     (task) => task.state === "backlog" || task.state === "in_progress"
   );
@@ -12,32 +11,56 @@ function App() {
 
   return (
     <>
-      <h1 className="p-3 ">Task manger</h1>
+      <h1 className="p-3">Task Manager</h1>
 
-      <h2 className="ms-4 mb-4 mt-2"> Current Tasks (4)</h2>
+      
+      <h2 className="ms-4 mb-4 mt-2">Current Tasks ({otherTasks.length})</h2>
 
-      {otherTasks.map((task, index) => (
-        <li className="ms-4" key={index}>
-          <strong>{task.title}</strong>
-          <button className="ms-2">backlog</button>
-          <br /> Priority: {task.priority}
-          <br />
-          Est time: {task.estimatedTime}
-        </li>
-      ))}
+      <ul>
+        {otherTasks.map((task, index) => {
+          
+          let buttonText = "";
+          if (task.state === "backlog") {
+            buttonText = "Backlog";
+          } else if (task.state === "in_progress") {
+            buttonText = "In Progress";
+          }
+
+          return (
+            <li className="ms-4" key={index}>
+              <strong>{task.title}</strong>
+              <button className="ms-2">{buttonText}</button>
+              <br /> Priority: {task.priority}
+              <br /> Est time: {task.estimatedTime} ore
+            </li>
+          );
+        })}
+      </ul>
 
       <hr />
-      <h2 className="ms-4 mb-4 mt-2"> Current Tasks (6)</h2>
 
-      {completedTasks.map((task, index) => (
-        <li className="ms-4" key={index}>
-          <strong>{task.title}</strong>
-          <button id="completed-botton" className=" ms-2 ">completed</button>
-          <br /> Priority: {task.priority}
-          <br />
-          Est time: {task.estimatedTime}
-        </li>
-      ))}
+   
+      <h2 className="ms-4 mb-4 mt-2">
+        Completed Tasks ({completedTasks.length})
+      </h2>
+
+      <ul>
+        {completedTasks.map((task, index) => {
+          
+          let buttonText = "Completed"; 
+
+          return (
+            <li className="ms-4" key={index}>
+              <strong>{task.title}</strong>
+              <button  className="ms-2">
+                {buttonText}
+              </button>
+              <br /> Priority: {task.priority}
+              <br /> Est time: {task.estimatedTime} ore
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 }
