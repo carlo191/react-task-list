@@ -1,5 +1,6 @@
 import "./App.css";
 import tasks from "./data/tasks.jsx";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   // Filtriamo i task in base allo stato
@@ -11,23 +12,32 @@ function App() {
 
   return (
     <>
-      <h1>ciao</h1>
+      <h1 className="p-3 ">Task manger</h1>
 
-      <h2> Task</h2>
-      <ul>
-        {otherTasks.map((task, index) => (
-          <li key={index}>
-            {task.title} - Priorità: {task.priority}, Tempo Stimato:{" "}
-            {task.estimatedTime} ore
-          </li>
-        ))}
-      </ul>
+      <h2 className="ms-4 mb-4 mt-2"> Current Tasks (4)</h2>
+
+      {otherTasks.map((task, index) => (
+        <li className="ms-4" key={index}>
+          <strong>{task.title}</strong>
+          <button className="ms-2">backlog</button>
+          <br /> Priority: {task.priority}
+          <br />
+          Est time: {task.estimatedTime}
+        </li>
+      ))}
+
       <hr />
-      <ul>
-        {completedTasks.map((task, index) => (
-          <li key={index}>Stato: {task.state}</li>
-        ))}
-      </ul>
+      <h2 className="ms-4 mb-4 mt-2"> Current Tasks (6)</h2>
+
+      {completedTasks.map((task, index) => (
+        <li className="ms-4" key={index}>
+          <strong>{task.title}</strong>
+          <button id="completed-botton" className=" ms-2 ">completed</button>
+          <br /> Priority: {task.priority}
+          <br />
+          Est time: {task.estimatedTime}
+        </li>
+      ))}
     </>
   );
 }

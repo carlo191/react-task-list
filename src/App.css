@@ -1,1 +1,14 @@
-
+h1 {
+  background-color: aquamarine;
+}
+li {
+  list-style-type: none;
+}
+button {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 5px;
+}
+#completed-botton {
+}
